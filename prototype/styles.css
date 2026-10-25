@@ -73,7 +73,7 @@ h2 { font-size: 17px; margin: 0 0 8px; }
   background: var(--green-soft); font-size: 20px;
 }
 .avatar.lg { width: 72px; height: 72px; font-size: 36px; }
-.name { font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.name { font-weight: 600; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 .type-tag {
   display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 99px;
   border: 1px solid var(--line); color: var(--muted); margin-left: auto;
@@ -90,11 +90,19 @@ h2 { font-size: 17px; margin: 0 0 8px; }
 .comment {
   border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; font-size: 14px;
 }
-.certified-answer {
-  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .03em;
-  text-transform: uppercase; color: var(--green); background: var(--green-soft);
-  padding: 1px 6px; border-radius: 4px; margin-left: 6px;
+.op {
+  display: inline-block; font-size: 11px; font-weight: 700; color: var(--muted);
+  border: 1px solid var(--line); padding: 0 5px; border-radius: 4px; margin-left: 4px;
 }
+
+/* Root Flare */
+.flair {
+  display: inline-block; font-size: 12px; font-weight: 600; white-space: nowrap;
+  padding: 1px 8px; border-radius: 99px;
+  background: var(--bg); color: var(--muted); border: 1px solid var(--line);
+}
+.flair.arborist { background: var(--green-soft); color: var(--green); border-color: transparent; }
+.flair.arborist.gold { background: var(--gold-soft); color: var(--gold); }
 
 /* Badges & chips */
 .badge {

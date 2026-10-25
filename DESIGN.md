@@ -2,10 +2,14 @@
 
 A social network for the tree-care industry: arborists, climbers, groundies,
 plant health care techs, utility line clearance crews, municipal foresters,
-consulting arborists, and students.
+consulting arborists, and students — plus the **homeowners** who need their
+help.
 
-The defining rule: **the "Verified" badge means you hold a current ISA
-certification.** Nothing else (paying, follower count, company size) earns it.
+The defining rules:
+- **The "Arborist" Root Flare (Verified) means you hold a current ISA
+  certification.** Nothing else (paying, follower count, company size) earns it.
+- **Anyone can ask; only Verified arborists answer.** Questions are where bad
+  advice does real damage, so answers are reserved for certified pros.
 
 ---
 
@@ -13,30 +17,44 @@ certification.** Nothing else (paying, follower count, company size) earns it.
 
 1. Give tree-care professionals one place to share work, ask questions, find
    crews and jobs, and keep up with the trade.
-2. Make credentials legible. When someone answers "is this oak safe?", you
+2. Give homeowners a place to get trustworthy answers about their trees.
+3. Make credentials legible. When someone answers "is this oak safe?", you
    should see at a glance whether they're an ISA Certified Arborist, a TRAQ
    holder, or a Board Certified Master Arborist.
-3. Keep verification trustworthy: badges expire when certifications lapse.
+4. Keep verification trustworthy: badges expire when certifications lapse.
 
 ### Non-goals (v1)
 
 - Marketplace payments / invoicing.
-- Homeowner-facing "hire an arborist" lead generation (possible v2).
+- "Hire an arborist" lead generation / quotes (possible v2 — homeowner
+  questions are a natural funnel for it).
 - Replacing ISA's own CEU tracking.
 
 ---
 
-## 2. Users and membership tiers
+## 2. Users and Root Flare
 
-| Tier | Who | How they get it | What it unlocks |
+Every account carries a **Root Flare** — a Reddit-style flair shown next to
+the name on every post, comment, and profile, so you always know who you're
+hearing from.
+
+| Root Flare | Who | How they get it | What it unlocks |
 |---|---|---|---|
-| **Member** | Anyone in or around the trade | Email + phone sign-up | Read feed, post, comment, join open groups, message |
-| **Verified** | Holds ≥1 current ISA credential | ISA verification flow (§4) | Green badge, credential chips on profile and posts, post jobs, join Verified-only groups, "Certified answer" label on Tree ID / Risk threads, appear in the Find an Arborist directory |
-| **Moderator** | Trusted Verified members | Appointed | Review flagged content and manual verifications |
+| 🏠 **Homeowner** | Property owners, the tree-curious | Picked at sign-up | Read feed, ask questions, reply in their own question threads, comment on non-question posts, message |
+| 🪢 **Tree Worker** | Climbers, groundies, PHC techs, students — in the trade but not ISA-certified | Picked at sign-up | Everything Homeowner can do, plus open groups and the path to verification |
+| ✓ **Arborist** (Verified) | Holds ≥1 current ISA certification | ISA verification flow (§4) — **cannot be self-selected** | Answer questions, credential chips, post jobs, Verified-only groups, Find an Arborist directory |
+| ✓ **Master Arborist** (Verified, gold) | Current Board Certified Master Arborist | ISA verification flow | Same as Arborist |
 
-Anyone can join — climbers working toward certification are a big part of the
-community. Verification is about **trust signals**, not gatekeeping
-participation.
+Moderator is a separate role layered on top of a Verified account
+(appointed; reviews flagged content and manual verifications).
+
+Rules:
+- Users switch freely between Homeowner and Tree Worker in settings.
+- Arborist flair is applied automatically on verification and replaces the
+  self-selected one. If the certification lapses, the account falls back to
+  its self-selected flair until it re-verifies.
+- Flair is a snapshot on each comment: an answer written while Verified stays
+  marked "Arborist (at time of posting)" if the cert later lapses.
 
 ### ISA credentials recognized
 
@@ -60,15 +78,37 @@ Each is shown as its own chip; a person can hold several.
 
 ## 3. Core features (v1)
 
+### Questions: anyone asks, only Verified answers
+
+Three post types are **questions**: *Ask an Arborist*, *Tree ID*, and
+*Risk / Diagnosis*.
+
+- Anyone (Homeowner, Tree Worker, Arborist) can post a question.
+- **Only Verified arborists can answer.** Everyone else sees the thread
+  read-only with "🔒 Answers from ISA-verified arborists only".
+- **The asker (OP) can always reply in their own thread** — to add photos,
+  answer follow-up questions ("which side is the lean?"), or say thanks. OP
+  replies are tagged `OP`.
+- Anyone can upvote ("🌿") answers; the asker can mark one as **Helpful**.
+- Risk / Diagnosis threads carry a standing disclaimer that online advice
+  isn't a site assessment, with a prompt to find a local certified arborist.
+- Enforced server-side, not just hidden in the UI.
+
+Non-question posts (work shares, gear) are open for anyone to comment on.
+
 ### Feed
 - Posts: text, photos (up to 10), short video.
+- Homeowners' composer defaults to *Ask an Arborist*; Tree Workers' and
+  Arborists' defaults to *Work share*.
 - Post types with their own UI:
+  - **Ask an Arborist** — general homeowner question (question type).
   - **Work share** — before/after photos, species, technique tags (`#reduction`, `#cabling`, `#removal`, `#crane`).
-  - **Tree ID** — "what is this?" with leaf/bark/form photos. Answers from Verified members are labeled.
-  - **Risk / Diagnosis** — defects, decay, pests, disease. Includes a standing disclaimer that online advice isn't a site assessment.
+  - **Tree ID** — "what is this?" with leaf/bark/form photos (question type).
+  - **Risk / Diagnosis** — defects, decay, pests, disease (question type).
   - **Gear** — saws, rigging, ropes, PPE reviews.
   - **Job** — Verified-only posting (see §3, Jobs).
 - Ranking: chronological from people/groups you follow, with a "Top in your region" tab.
+  Verified arborists get an **Unanswered near you** tab of open questions.
 
 ### Profiles
 - Name, photo, company, region, years in trade, specialties.
@@ -89,8 +129,9 @@ Each is shown as its own chip; a person can hold several.
 - Applicants can attach their Treeple profile.
 
 ### Messaging
-- 1:1 and group DMs. Unverified members can't cold-message Verified members
-  more than N times/day (spam control).
+- 1:1 and group DMs. Homeowners and Tree Workers can't cold-message Verified
+  members more than N times/day (spam control) — questions should go to the
+  public feed, where everyone benefits from the answer.
 
 ---
 
@@ -159,7 +200,8 @@ auto-rejecting.
 
 ```
 User            id, name, handle, email, phone, region, company, bio, avatar_url,
-                tier (member|verified|moderator), created_at
+                role (homeowner|tree_worker)   — self-selected Root Flare
+                is_moderator, created_at
 
 Credential      id, user_id, type (certified_arborist|utility|municipal|
                 tw_climber|tw_aerial|bcma|traq), isa_number, status
@@ -174,15 +216,21 @@ Post            id, author_id, type (work|tree_id|risk|gear|job), body,
                 media[], tags[], group_id?, created_at
                 — author_verified_snapshot: credentials at time of posting
 
-Comment         id, post_id, author_id, body, author_verified_snapshot, created_at
+Comment         id, post_id, author_id, body, author_flair_snapshot, is_op,
+                marked_helpful, created_at
 Group           id, name, visibility (open|verified_only), chapter?
 Job             id, post_id, company, location, pay_min, pay_max,
                 required_credentials[]
 Follow, Like, Message, Report — standard
 ```
 
-`User.tier = verified` is derived: true while the user has at least one
+"Verified" is derived, never stored: true while the user has at least one
 Credential with status `verified` or `expiring` whose type is not `traq`.
+Displayed Root Flare = Master Arborist if verified with BCMA, else Arborist if
+verified, else `User.role`.
+
+Reply permission on a question post (`ask | tree_id | risk`):
+`is_verified(user) OR post.author_id == user.id`.
 
 ---
 
@@ -201,8 +249,8 @@ Credential with status `verified` or `expiring` whose type is not `traq`.
 
 1. **Prototype** (this repo, `prototype/`) — clickable mock of feed, profile,
    and verification flow.
-2. **MVP** — sign-up, profiles, feed, Tree ID posts, manual ISA verification
-   (path C), badges with expiry.
+2. **MVP** — sign-up with Root Flare, profiles, feed, question posts with
+   verified-only answers, manual ISA verification (path C), flair with expiry.
 3. **Trust** — reach out to ISA about a data partnership (path A); automated
    re-checks.
 4. **Growth** — groups, jobs board, ISA chapter regions, Find an Arborist
@@ -215,7 +263,11 @@ Credential with status `verified` or `expiring` whose type is not `traq`.
 1. Does TRAQ alone grant Verified? (Current answer: no.)
 2. Recognize non-ISA credentials (e.g. state licenses, UK Arboricultural
    Association, TCIA CTSP) as secondary chips without the Verified badge?
-3. Should homeowners be able to join and ask questions, or is this
-   pros-only?
-4. Company pages: does a company get verified if it employs a Certified
+3. ~~Should homeowners be able to join?~~ **Decided:** yes — they can ask,
+   only Verified arborists answer, and Root Flare shows who's who.
+4. Can Tree Workers comment on work shares with advice that reads like an
+   answer? (Current answer: yes; only question types are locked.)
+5. Should there be more self-selected flairs (e.g. Student, Municipal
+   Forester, Landscaper), or keep it to Homeowner / Tree Worker?
+6. Company pages: does a company get verified if it employs a Certified
    Arborist?

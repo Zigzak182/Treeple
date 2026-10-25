@@ -13,6 +13,7 @@ const CREDENTIALS = {
 };
 
 const POST_TYPES = {
+  ask: "Ask an Arborist",
   work: "Work share",
   tree_id: "Tree ID",
   risk: "Risk / Diagnosis",
@@ -20,16 +21,26 @@ const POST_TYPES = {
   job: "Job",
 };
 
+// Question posts: anyone can ask, only ISA-verified arborists (and the asker) can reply.
+const QUESTION_TYPES = new Set(["ask", "tree_id", "risk"]);
+
+// Self-selected Root Flare for unverified accounts. "Arborist" flair can't be
+// picked; it's earned through ISA verification.
+const ROLES = {
+  homeowner: { label: "Homeowner", icon: "🏠" },
+  tree_worker: { label: "Tree Worker", icon: "🪢" },
+};
+
 // Loose on purpose: ISA formats vary by chapter, so never hard-reject on format.
 const ISA_NUMBER_RE = /^[A-Z]{2}-\d{3,6}[A-Z]{0,4}$/;
 
-const STORAGE_KEY = "treeple-prototype-v1";
+const STORAGE_KEY = "treeple-prototype-v2";
 
 function seed() {
   const users = {
     maria: {
       id: "maria", name: "Maria Okafor", avatar: "🧗‍♀️", company: "Canopy Works",
-      region: "Pacific Northwest", years: 12,
+      region: "Pacific Northwest", years: 12, role: "tree_worker",
       credentials: [
         { type: "certified_arborist", status: "verified", expires: "2027-08" },
         { type: "bcma", status: "verified", expires: "2027-08" },
@@ -38,7 +49,7 @@ function seed() {
     },
     dev: {
       id: "dev", name: "Dev Patel", avatar: "🪚", company: "Patel Tree Service",
-      region: "Southern", years: 6,
+      region: "Southern", years: 6, role: "tree_worker",
       credentials: [
         { type: "certified_arborist", status: "expiring", expires: "2026-12" },
         { type: "tw_climber", status: "verified", expires: "2027-05" },
@@ -46,14 +57,26 @@ function seed() {
     },
     sam: {
       id: "sam", name: "Sam Reyes", avatar: "🌱", company: "Groundie @ Oak & Ash",
-      region: "Midwest", years: 1, credentials: [],
+      region: "Midwest", years: 1, role: "tree_worker", credentials: [],
+    },
+    linda: {
+      id: "linda", name: "Linda Brooks", avatar: "🏡", company: "",
+      region: "Northeast", years: 0, role: "homeowner", credentials: [],
     },
     me: {
       id: "me", name: "You", avatar: "🙂", company: "", region: "", years: 0,
-      credentials: [],
+      role: "homeowner", credentials: [],
     },
   };
   const posts = [
+    {
+      id: 4, author: "linda", type: "ask", photo: "🍁",
+      body: "Our silver maple started leaning toward the house after last week's storm and there's a crack in the soil on the opposite side. Is this an emergency?",
+      tags: ["#storm", "#leaning"], likes: 5, comments: [
+        { author: "maria", body: "Soil heaving opposite a new lean means the root plate is failing. Keep people out of the fall zone and get a certified arborist out today. This is an emergency." },
+        { author: "linda", body: "Thank you! Calling someone now." },
+      ],
+    },
     {
       id: 1, author: "maria", type: "work", photo: "🌲",
       body: "Crown reduction on a 90' Doug fir over a house. Went 15% max, all cuts to laterals at least 1/3 the parent diameter.",
@@ -77,7 +100,7 @@ function seed() {
       ],
     },
   ];
-  return { users, posts, verification: null, nextPostId: 4 };
+  return { users, posts, verification: null, nextPostId: 5 };
 }
 
 function load() {
@@ -123,6 +146,19 @@ function badge(user) {
   return `<span class="badge${gold ? " gold" : ""}" title="${title}">✓</span>`;
 }
 
+function flair(user) {
+  if (isVerified(user)) {
+    const gold = isBCMA(user);
+    return `<span class="flair arborist${gold ? " gold" : ""}" title="ISA-verified">✓ ${gold ? "Master Arborist" : "Arborist"}</span>`;
+  }
+  const r = ROLES[user.role] || ROLES.homeowner;
+  return `<span class="flair">${r.icon} ${r.label}</span>`;
+}
+
+function canReply(user, post) {
+  return !QUESTION_TYPES.has(post.type) || isVerified(user) || post.author === user.id;
+}
+
 function chips(user) {
   const cs = activeCreds(user);
   if (!cs.length) return "";
@@ -148,6 +184,7 @@ function maskNumber(n) {
 function viewFeed() {
   const me = state.users.me;
   const verified = isVerified(me);
+  const defaultType = me.role === "homeowner" && !verified ? "ask" : "work";
   const filters = ["all", ...Object.keys(POST_TYPES)];
   const posts = state.posts.filter((p) => feedFilter === "all" || p.type === feedFilter);
 
@@ -157,12 +194,14 @@ function viewFeed() {
       <div class="row">
         <select id="post-type">
           ${Object.entries(POST_TYPES).map(([k, v]) =>
-            `<option value="${k}" ${k === "job" && !verified ? "disabled" : ""}>${v}${k === "job" && !verified ? " (Verified only)" : ""}</option>`
+            `<option value="${k}" ${k === "job" && !verified ? "disabled" : ""} ${k === defaultType ? "selected" : ""}>${v}${k === "job" && !verified ? " (Verified only)" : ""}</option>`
           ).join("")}
         </select>
         <button class="btn" id="post-btn">Post</button>
       </div>
-      ${verified ? "" : `<p class="hint">Posting jobs and the Certified answer label need an ISA certification. <a href="#verify">Get verified →</a></p>`}
+      ${verified ? "" : me.role === "homeowner"
+        ? `<p class="hint">Got a tree problem? Ask it here. Only ISA-verified arborists can answer.</p>`
+        : `<p class="hint">Answering questions and posting jobs need an ISA certification. <a href="#verify">Get verified →</a></p>`}
     </div>
 
     <div class="row" style="margin-bottom:12px">
@@ -175,13 +214,14 @@ function viewFeed() {
 
 function viewPost(p) {
   const a = state.users[p.author];
-  const showCertLabel = p.type === "tree_id" || p.type === "risk";
+  const me = state.users.me;
+  const question = QUESTION_TYPES.has(p.type);
   return `
     <article class="card">
       <div class="post-head">
         <div class="avatar">${a.avatar}</div>
         <div>
-          <div class="name">${esc(a.name)} ${badge(a)}</div>
+          <div class="name">${esc(a.name)} ${flair(a)}</div>
           <div class="small muted">${esc(a.company || "")}${a.region ? " · " + esc(a.region) : ""}</div>
         </div>
         <span class="type-tag">${POST_TYPES[p.type]}</span>
@@ -194,19 +234,22 @@ function viewPost(p) {
         <button data-like="${p.id}">🌿 ${p.likes}</button>
         <span>💬 ${p.comments.length}</span>
       </div>
+      ${question ? `<p class="hint">🔒 Answers from ISA-verified arborists only.</p>` : ""}
       ${p.comments.map((c) => {
         const ca = state.users[c.author];
-        const certified = showCertLabel && isVerified(ca);
         return `<div class="comment">
-          <span class="name">${esc(ca.name)} ${badge(ca)}</span>
-          ${certified ? `<span class="certified-answer">Certified answer</span>` : ""}
+          <span class="name">${esc(ca.name)} ${flair(ca)}</span>
+          ${question && c.author === p.author ? `<span class="op">OP</span>` : ""}
           <div>${esc(c.body)}</div>
         </div>`;
       }).join("")}
+      ${canReply(me, p) ? `
       <div class="row">
-        <input type="text" placeholder="Add a comment…" data-comment-input="${p.id}">
+        <input type="text" placeholder="${question && p.author !== me.id ? "Answer as a verified arborist…" : "Add a comment…"}" data-comment-input="${p.id}">
         <button class="btn secondary" data-comment="${p.id}">Reply</button>
-      </div>
+      </div>` : `
+      <p class="hint">Only ISA-verified arborists can answer questions.
+        ${me.role === "tree_worker" ? `<a href="#verify">Get verified →</a>` : ""}</p>`}
     </article>
   `;
 }
@@ -220,17 +263,23 @@ function viewProfile() {
       <div class="post-head">
         <div class="avatar lg">${me.avatar}</div>
         <div>
-          <h1 class="name">${esc(me.name)} ${badge(me)}</h1>
-          <div class="muted">${isVerified(me) ? "ISA Verified" : "Member"}</div>
+          <h1 class="name">${esc(me.name)}</h1>
+          <div>${flair(me)}</div>
         </div>
       </div>
       ${chips(me)}
+      ${isVerified(me)
+        ? `<p class="hint">Your Arborist flair comes from your ISA verification.</p>`
+        : `<label for="role">Your Root Flare</label>
+           <select id="role">${Object.entries(ROLES).map(([k, r]) =>
+             `<option value="${k}" ${me.role === k ? "selected" : ""}>${r.icon} ${r.label}</option>`).join("")}</select>
+           <p class="hint">Arborist flair can't be picked. It's earned by verifying an ISA certification.</p>`}
       ${isVerified(me) && v ? `
         <p class="small muted">ISA # ${esc(maskNumber(v.number))} · expires ${esc(v.expires)} ·
           <a href="https://www.isa-arbor.com" target="_blank" rel="noopener">verify on ISA</a></p>` : ""}
       ${me.credentials.some((c) => c.status === "expiring") ? `<div class="status expiring">Your ISA certification expires soon. Finish your CEUs and renew with ISA to keep your badge.</div>` : ""}
       ${v && v.status === "pending" ? `<div class="status pending">Verification pending — checking your ISA record.</div>` : ""}
-      ${!v ? `<p><a class="btn" href="#verify" style="text-decoration:none">Get verified with your ISA certification</a></p>` : ""}
+      ${!v && me.role === "tree_worker" ? `<p><a class="btn" href="#verify" style="text-decoration:none">Get verified with your ISA certification</a></p>` : ""}
     </div>
     <div class="card">
       <h2>Your posts</h2>
@@ -256,7 +305,7 @@ function viewVerify() {
     return `
       <div class="card">
         <div class="status verified"><strong>You're verified ${badge(me)}</strong><br>
-          Your badge shows on your profile, posts, and comments.</div>
+          Your flair is now ${flair(me)} and you can answer questions.</div>
         ${chips(me)}
         <p class="small muted">We re-check your ISA record monthly and remind you 60, 30, and 7 days
           before your certification expires (${esc(v.expires)}). If it lapses, the badge is hidden until you renew.</p>
@@ -393,8 +442,9 @@ document.addEventListener("click", (e) => {
   if (t.dataset.comment) {
     const input = document.querySelector(`[data-comment-input="${t.dataset.comment}"]`);
     const body = input.value.trim();
-    if (!body) return;
-    state.posts.find((x) => x.id === +t.dataset.comment).comments.push({ author: "me", body });
+    const post = state.posts.find((x) => x.id === +t.dataset.comment);
+    if (!body || !canReply(state.users.me, post)) return;
+    post.comments.push({ author: "me", body });
     save(); return render();
   }
   if (t.id === "v-next1") { verifyDraft.step = 2; return render(); }
@@ -437,6 +487,7 @@ document.addEventListener("change", (e) => {
     verifyDraft.creds = t.checked ? [...verifyDraft.creds, k] : verifyDraft.creds.filter((c) => c !== k);
     return render();
   }
+  if (t.id === "role") { state.users.me.role = t.value; save(); return render(); }
   if (t.id === "v-consent") { verifyDraft.consent = t.checked; return render(); }
 });
 
