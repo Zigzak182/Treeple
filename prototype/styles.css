@@ -95,6 +95,19 @@ h2 { font-size: 17px; margin: 0 0 8px; }
   border: 1px solid var(--line); padding: 0 5px; border-radius: 4px; margin-left: 4px;
 }
 
+.advice-only {
+  display: inline-block; font-size: 11px; font-weight: 700; color: var(--amber);
+  background: var(--amber-soft); padding: 0 6px; border-radius: 4px; margin-left: 4px;
+}
+.staff-hero {
+  border: 2px solid var(--green); background: var(--green-soft);
+  border-radius: 12px; padding: 12px 14px; margin: 12px 0;
+}
+.staff-hero .post-head { margin: 8px 0 0; }
+.staff-hero .avatar, .staff-hero .chip:not(.gold) { background: var(--card); }
+.staff-hero-title { font-weight: 700; color: var(--green); text-transform: uppercase; font-size: 12px; letter-spacing: .04em; }
+.cred-list { padding-left: 18px; margin: 8px 0; }
+
 /* Root Flare */
 .flair {
   display: inline-block; font-size: 12px; font-weight: 600; white-space: nowrap;

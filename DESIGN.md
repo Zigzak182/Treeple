@@ -6,10 +6,14 @@ consulting arborists, and students — plus the **homeowners** who need their
 help.
 
 The defining rules:
-- **The "Arborist" Root Flare (Verified) means you hold a current ISA
-  certification.** Nothing else (paying, follower count, company size) earns it.
+- **The "Arborist" Root Flare (Verified) means you hold at least one current,
+  verified tree-care credential** — ISA certification, TRAQ, TCIA CTSP, a state
+  arborist license, and others (§2). Nothing else (paying, follower count,
+  company size) earns it.
 - **Anyone can ask; only Verified arborists answer.** Questions are where bad
-  advice does real damage, so answers are reserved for certified pros.
+  advice does real damage, so answers are reserved for credentialed pros.
+- **Uncertified tree workers can still give advice elsewhere, clearly
+  labeled** "Advice only · Not certified".
 
 ---
 
@@ -20,15 +24,15 @@ The defining rules:
 2. Give homeowners a place to get trustworthy answers about their trees.
 3. Make credentials legible. When someone answers "is this oak safe?", you
    should see at a glance whether they're an ISA Certified Arborist, a TRAQ
-   holder, or a Board Certified Master Arborist.
-4. Keep verification trustworthy: badges expire when certifications lapse.
+   holder, a state-licensed tree expert, or a Board Certified Master Arborist.
+4. Keep verification trustworthy: flair expires when credentials lapse.
 
 ### Non-goals (v1)
 
 - Marketplace payments / invoicing.
 - "Hire an arborist" lead generation / quotes (possible v2 — homeowner
   questions are a natural funnel for it).
-- Replacing ISA's own CEU tracking.
+- Replacing issuers' own CEU / renewal tracking.
 
 ---
 
@@ -41,9 +45,9 @@ hearing from.
 | Root Flare | Who | How they get it | What it unlocks |
 |---|---|---|---|
 | 🏠 **Homeowner** | Property owners, the tree-curious | Picked at sign-up | Read feed, ask questions, reply in their own question threads, comment on non-question posts, message |
-| 🪢 **Tree Worker** | Climbers, groundies, PHC techs, students — in the trade but not ISA-certified | Picked at sign-up | Everything Homeowner can do, plus open groups and the path to verification |
-| ✓ **Arborist** (Verified) | Holds ≥1 current ISA certification or TRAQ | ISA verification flow (§4) — **cannot be self-selected** | Answer questions, credential chips, post jobs, Verified-only groups, Find an Arborist directory |
-| ✓ **Master Arborist** (Verified, gold) | Current Board Certified Master Arborist | ISA verification flow | Same as Arborist |
+| 🪢 **Tree Worker** | Climbers, groundies, PHC techs, students — in the trade but without a verified credential | Picked at sign-up | Everything Homeowner can do, plus open groups and the path to verification. Their comments carry an **Advice only · Not certified** label |
+| ✓ **Arborist** (Verified) | Holds ≥1 current recognized credential (table below) | Verification flow (§4) — **cannot be self-selected** | Answer questions, credential chips, post jobs, Verified-only groups, Find an Arborist directory |
+| ✓ **Master Arborist** (Verified, gold) | Current Board Certified Master Arborist | Verification flow | Same as Arborist |
 
 Moderator is a separate role layered on top of a Verified account
 (appointed; reviews flagged content and manual verifications).
@@ -51,27 +55,37 @@ Moderator is a separate role layered on top of a Verified account
 Rules:
 - Users switch freely between Homeowner and Tree Worker in settings.
 - Arborist flair is applied automatically on verification and replaces the
-  self-selected one. If the certification lapses, the account falls back to
-  its self-selected flair until it re-verifies.
+  self-selected one. If **all** of a user's credentials lapse, the account
+  falls back to its self-selected flair until one is renewed.
 - Flair is a snapshot on each comment: an answer written while Verified stays
   marked "Arborist (at time of posting)" if the cert later lapses.
 
-### ISA credentials recognized
+### Credentials recognized
 
-Each is shown as its own chip; a person can hold several.
+**Any one current, verified credential earns the Arborist Root Flare.** Each
+is shown as its own chip with its issuer; a person can hold several, and can
+add more at any time.
 
 | Credential | Chip | Notes |
 |---|---|---|
+| **ISA** | | |
 | ISA Certified Arborist | `Certified Arborist` | Base credential; most common |
 | Certified Arborist Utility Specialist | `Utility Specialist` | |
 | Certified Arborist Municipal Specialist | `Municipal Specialist` | |
 | Certified Tree Worker / Climber Specialist | `Tree Worker Climber` | |
 | Certified Tree Worker / Aerial Lift Specialist | `Tree Worker Aerial Lift` | |
-| Board Certified Master Arborist | `BCMA` | Top-tier; gets a gold badge variant |
-| Tree Risk Assessment Qualification | `TRAQ` | A *qualification*, not a certification, but **does** grant Verified on its own: ISA requires Certified Arborist status or equivalent education/experience to earn it. Renews on a 5-year cycle. |
+| Board Certified Master Arborist | `BCMA` | Top-tier; gets the gold Master Arborist flair |
+| Tree Risk Assessment Qualification | `TRAQ` | A *qualification*, not a certification, but grants Verified on its own: ISA requires Certified Arborist status or equivalent education/experience to earn it. |
+| **TCIA** | | |
+| Certified Treecare Safety Professional | `CTSP` | |
+| **Government** | | |
+| State / provincial arborist or tree-expert license | e.g. `New Jersey Licensed Tree Expert` | Verified against the state's public license lookup. Chip names the state and license. |
+| **Other** | | |
+| Other tree-care credentials | as entered, e.g. `ASCA Registered Consulting Arborist` | e.g. ASCA RCA, Arboricultural Association (UK), SAF Certified Forester, Canadian provincial certs. Always manual review (path C). Moderators keep an allowlist of accepted credentials so repeat types get faster. |
 
-Any one current credential from this table earns Verified and the Arborist
-Root Flare.
+Not accepted: general landscaping, pesticide applicator licenses on their
+own, business licenses, insurance certificates — they don't show tree-care
+expertise. Moderators can reject an "Other" submission on that basis.
 
 ---
 
@@ -84,7 +98,7 @@ Three post types are **questions**: *Ask an Arborist*, *Tree ID*, and
 
 - Anyone (Homeowner, Tree Worker, Arborist) can post a question.
 - **Only Verified arborists can answer.** Everyone else sees the thread
-  read-only with "🔒 Answers from ISA-verified arborists only".
+  read-only with "🔒 Answers from verified arborists only".
 - **The asker (OP) can always reply in their own thread** — to add photos,
   answer follow-up questions ("which side is the lean?"), or say thanks. OP
   replies are tagged `OP`.
@@ -94,6 +108,18 @@ Three post types are **questions**: *Ask an Arborist*, *Tree ID*, and
 - Enforced server-side, not just hidden in the UI.
 
 Non-question posts (work shares, gear) are open for anyone to comment on.
+
+### "Advice only · Not certified"
+
+Tree Workers know a lot and should be able to share it — but readers,
+especially homeowners, need to tell it apart from credentialed advice.
+
+- Every comment by a Tree Worker (unverified) carries an amber
+  **Advice only · Not certified** label next to their flair.
+- Not applied to a post's own author replying in their thread, or to
+  Homeowners (their 🏠 flair already makes it clear they're not a pro).
+- The label is snapshotted with the comment; if the author verifies later,
+  old comments keep "Not certified (at time of posting)".
 
 ### Feed
 - Posts: text, photos (up to 10), short video.
@@ -111,11 +137,41 @@ Non-question posts (work shares, gear) are open for anyone to comment on.
 
 ### Profiles
 - Name, photo, company, region, years in trade, specialties.
-- **Credential block** (Verified only): each credential chip, ISA cert number
-  (masked to last 4 by default; owner can choose to show in full), and
-  *expiration month*. Tapping a chip links to ISA's public credential lookup
-  so anyone can double-check.
+- **Credential block** (Verified only): each credential chip with its issuer,
+  credential number (masked to last 4 by default; owner can choose to show in
+  full), and *expiration month*. Tapping a chip links to the issuer's public
+  lookup (ISA, state license board, etc.) where one exists, so anyone can
+  double-check.
 - Portfolio grid of work-share posts.
+
+### Company pages
+
+Companies can have a page (logo, about, region, services, photos, jobs).
+
+**A company shows "✓ Certified · Arborist on staff" only while at least one
+verified arborist is confirmed as working there — and that arborist must be
+listed front and center.**
+
+- **Staff link needs both sides to confirm**: a company admin adds the
+  person, and the person accepts from their own account (or the person
+  requests and the admin approves). A company can't claim someone who hasn't
+  agreed.
+- **Front and center**: directly under the company name and flair, before the
+  "about" text or anything else, a highlighted **Certified arborist(s) on
+  staff** panel shows each verified staff member's photo, name, Root Flare,
+  and credential chips, linking to their profile. This panel can't be hidden,
+  reordered below other content, or collapsed by the company.
+- The same names appear wherever the company's Certified flair shows up in
+  compact form (job posts, search results, directory): e.g. *"Certified ·
+  Maria Okafor, BCMA"* or a tap-to-reveal list.
+- **Status follows the person**: if every certified staff member leaves the
+  company, unlinks, or lets their credentials lapse, the company loses
+  Certified status immediately and the admin is notified. The page then says
+  "No certified arborist currently listed on staff".
+- An arborist can be linked to more than one company (e.g. a consultant), but
+  each link is visible on their own profile so it's easy to spot abuse.
+- Company pages don't answer questions; people do. Answers always come from
+  individual accounts.
 
 ### Groups
 - Open groups (e.g. *Climbers Corner*, *PHC & Soil*, *Crane Removals*).
@@ -134,30 +190,33 @@ Non-question posts (work shares, gear) are open for anyone to comment on.
 
 ---
 
-## 4. ISA verification flow
+## 4. Verification flow
 
-ISA maintains the authoritative record of who is certified. As of this
-writing ISA offers a public credential lookup on its website but no public
-API that we've confirmed, so the design supports three verification paths and
-picks the strongest one available.
+Each issuer (ISA, TCIA, state license boards, …) holds the authoritative
+record for its credentials. We verify one credential at a time against its
+issuer, and a user can add as many as they hold.
 
 ### 4.1 What the user submits
-1. Full name **as it appears on their ISA record**.
-2. ISA certification number (e.g. `PN-1234A`, `WE-5678AT`). Format is a
-   region/chapter prefix, a dash, digits, and credential-letter suffixes. We
-   validate loosely (`^[A-Z]{2}-\d{3,6}[A-Z]{0,4}$`) and never reject a number
-   purely on format — ISA formats vary and change.
-3. Which credentials they hold (checkboxes).
-4. Optional: photo of their ISA card or certificate.
-5. Consent to look up their record and re-check it periodically.
+1. **Issuer**: ISA (certification or TRAQ), TCIA CTSP, state/provincial
+   license, or Other.
+2. Full name **as it appears on the credential**.
+3. Credential number.
+   - ISA numbers (e.g. `PN-1234A`, `WE-5678AT`) are a region/chapter prefix,
+     a dash, digits, and credential-letter suffixes. We validate loosely
+     (`^[A-Z]{2}-\d{3,6}[A-Z]{0,4}$`) and never reject purely on format.
+   - Other issuers: free text.
+4. Issuer-specific details: ISA → which ISA credentials (checkboxes); state →
+   state/province and license name; Other → credential name and issuer.
+5. Optional (strongly encouraged for Other): photo of the card or certificate.
+6. Consent to look up the record and re-check it periodically.
 
 ### 4.2 How we verify (strongest first)
 
 | Path | How | Speed | Notes |
 |---|---|---|---|
-| **A. ISA partnership / data feed** | Query ISA directly by cert number | Instant | Requires a data-sharing agreement with ISA. Pursue early — this is the best path. |
-| **B. Public credential lookup** | Check the cert number + name against ISA's public "Verify a Credential" page | Minutes | Must respect ISA's terms of use; do it manually or with permission, not by scraping. |
-| **C. Manual review** | Moderator compares submitted card photo with the lookup | 1–3 days | Fallback for edge cases (name changes, international chapters). |
+| **A. Issuer partnership / data feed** | Query the issuer directly by number | Instant | Needs a data-sharing agreement. Pursue ISA first (biggest volume), then TCIA. |
+| **B. Public lookup** | Check number + name against the issuer's public lookup (ISA's credential lookup, state license board search pages) | Minutes | Must respect each site's terms of use; do it manually or with permission, not by scraping. |
+| **C. Manual review** | Moderator compares the submitted card photo with whatever record exists | 1–3 days | Always used for "Other"; fallback for name changes, international credentials, and issuers with no lookup. |
 
 Name match uses normalized comparison (case, accents, middle initials,
 common nicknames) and falls back to manual review on a mismatch rather than
@@ -176,20 +235,22 @@ auto-rejecting.
                          │          fraud              │ expiry passes
                          └─────────────────────────────┤
                                                        ▼
-                                                     lapsed  (badge hidden, posts keep history)
+                                                     lapsed  (chip hidden, posts keep history)
 ```
 
-- ISA certifications renew on a **3-year cycle** with CEU requirements. We
-  store the expiration date and re-check monthly, plus 60 / 30 / 7 days before
-  expiry.
-- When a credential lapses, the badge disappears from the profile and new
-  posts. Old "Certified answer" labels stay but show "at time of posting".
-- Users can re-verify instantly once ISA shows them as current again.
+- Each credential has its own expiration date from its issuer (ISA
+  certifications renew every 3 years with CEUs; licenses vary by state). We
+  re-check monthly, plus 60 / 30 / 7 days before expiry. Credentials without a
+  published expiry get a yearly re-check.
+- A lapsed credential's chip disappears. The Arborist flair stays as long as
+  **any** credential is current. Old answers keep "Arborist (at time of
+  posting)".
+- Users can re-verify instantly once the issuer shows them as current again.
 
 ### 4.4 Anti-abuse
-- One ISA number ↔ one Treeple account. A second claim on the same number
-  freezes both and goes to manual review.
-- Report button on any badge ("I don't think this person is certified").
+- One credential number (per issuer) ↔ one Treeple account. A second claim on
+  the same number freezes both and goes to manual review.
+- Report button on any flair ("I don't think this person is certified").
 - Card photos are stored encrypted, accessible to moderators only, and
   deleted 30 days after a decision.
 
@@ -202,21 +263,30 @@ User            id, name, handle, email, phone, region, company, bio, avatar_url
                 role (homeowner|tree_worker)   — self-selected Root Flare
                 is_moderator, created_at
 
-Credential      id, user_id, type (certified_arborist|utility|municipal|
-                tw_climber|tw_aerial|bcma|traq), isa_number, status
-                (pending|verified|expiring|lapsed|rejected|revoked),
-                verified_via (isa_api|public_lookup|manual), verified_at,
+Credential      id, user_id, issuer (isa|tcia|state|other),
+                type (certified_arborist|utility|municipal|tw_climber|
+                tw_aerial|bcma|traq|ctsp|state_license|other),
+                label (for state_license / other, e.g. "NJ Licensed Tree Expert"),
+                jurisdiction (state/province, for state_license),
+                number, status (pending|verified|expiring|lapsed|rejected|revoked),
+                verified_via (issuer_api|public_lookup|manual), verified_at,
                 expires_at, last_checked_at
+                — unique (issuer, jurisdiction, number)
 
-Verification    id, user_id, submitted_name, isa_number, card_photo_key,
-Request         status, reviewer_id, decision_note, created_at, decided_at
+Verification    id, user_id, issuer, submitted_name, number, details (json),
+Request         card_photo_key, status, reviewer_id, decision_note,
+                created_at, decided_at
 
 Post            id, author_id, type (work|tree_id|risk|gear|job), body,
                 media[], tags[], group_id?, created_at
                 — author_verified_snapshot: credentials at time of posting
 
-Comment         id, post_id, author_id, body, author_flair_snapshot, is_op,
-                marked_helpful, created_at
+Comment         id, post_id, author_id, body, author_flair_snapshot,
+                advice_only (bool, snapshot), is_op, marked_helpful, created_at
+Company         id, name, logo_url, about, region, admin_user_ids[], created_at
+CompanyStaff    company_id, user_id, title, company_confirmed_at,
+                user_confirmed_at, ended_at
+                — counted only when both confirmed and not ended
 Group           id, name, visibility (open|verified_only), chapter?
 Job             id, post_id, company, location, pay_min, pay_max,
                 required_credentials[]
@@ -224,12 +294,19 @@ Follow, Like, Message, Report — standard
 ```
 
 "Verified" is derived, never stored: true while the user has at least one
-Credential with status `verified` or `expiring` (any type, including `traq`).
+Credential with status `verified` or `expiring` (any issuer, any type).
 Displayed Root Flare = Master Arborist if verified with BCMA, else Arborist if
 verified, else `User.role`.
 
 Reply permission on a question post (`ask | tree_id | risk`):
 `is_verified(user) OR post.author_id == user.id`.
+
+Company is Certified while at least one active CompanyStaff row (both sides
+confirmed, not ended) points to a verified user. Those users are the ones
+listed in the company page's staff panel.
+
+"Advice only" label on a comment:
+`NOT is_verified(author) AND author.role == tree_worker AND author_id != post.author_id`.
 
 ---
 
@@ -249,24 +326,28 @@ Reply permission on a question post (`ask | tree_id | risk`):
 1. **Prototype** (this repo, `prototype/`) — clickable mock of feed, profile,
    and verification flow.
 2. **MVP** — sign-up with Root Flare, profiles, feed, question posts with
-   verified-only answers, manual ISA verification (path C), flair with expiry.
-3. **Trust** — reach out to ISA about a data partnership (path A); automated
-   re-checks.
-4. **Growth** — groups, jobs board, ISA chapter regions, Find an Arborist
-   directory.
+   verified-only answers, advice-only labels, manual verification for all
+   issuers (path C), flair with expiry.
+3. **Trust** — reach out to ISA and TCIA about data partnerships (path A);
+   public-lookup checks for ISA and the largest state license boards (path B);
+   automated re-checks.
+4. **Growth** — company pages, groups, jobs board, ISA chapter regions, Find
+   an Arborist directory.
 
 ---
 
 ## 8. Open questions
 
 1. ~~Does TRAQ alone grant Verified?~~ **Decided:** yes.
-2. Recognize non-ISA credentials (e.g. state licenses, UK Arboricultural
-   Association, TCIA CTSP) as secondary chips without the Verified badge?
+2. ~~Recognize non-ISA credentials?~~ **Decided:** yes — any recognized
+   tree-care credential earns the Arborist flair.
 3. ~~Should homeowners be able to join?~~ **Decided:** yes — they can ask,
    only Verified arborists answer, and Root Flare shows who's who.
-4. Can Tree Workers comment on work shares with advice that reads like an
-   answer? (Current answer: yes; only question types are locked.)
+4. ~~Can Tree Workers give advice?~~ **Decided:** yes, on non-question posts,
+   labeled "Advice only · Not certified".
 5. Should there be more self-selected flairs (e.g. Student, Municipal
    Forester, Landscaper), or keep it to Homeowner / Tree Worker?
-6. Company pages: does a company get verified if it employs a Certified
-   Arborist?
+6. Exactly which "Other" credentials are accepted? Needs a starting
+   allowlist (ASCA RCA, Arboricultural Association, SAF CF, …).
+7. ~~Company pages?~~ **Decided:** a company shows Certified while a verified
+   arborist is on staff, and that arborist is listed front and center.
