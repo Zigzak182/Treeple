@@ -42,7 +42,7 @@ hearing from.
 |---|---|---|---|
 | 🏠 **Homeowner** | Property owners, the tree-curious | Picked at sign-up | Read feed, ask questions, reply in their own question threads, comment on non-question posts, message |
 | 🪢 **Tree Worker** | Climbers, groundies, PHC techs, students — in the trade but not ISA-certified | Picked at sign-up | Everything Homeowner can do, plus open groups and the path to verification |
-| ✓ **Arborist** (Verified) | Holds ≥1 current ISA certification | ISA verification flow (§4) — **cannot be self-selected** | Answer questions, credential chips, post jobs, Verified-only groups, Find an Arborist directory |
+| ✓ **Arborist** (Verified) | Holds ≥1 current ISA certification or TRAQ | ISA verification flow (§4) — **cannot be self-selected** | Answer questions, credential chips, post jobs, Verified-only groups, Find an Arborist directory |
 | ✓ **Master Arborist** (Verified, gold) | Current Board Certified Master Arborist | ISA verification flow | Same as Arborist |
 
 Moderator is a separate role layered on top of a Verified account
@@ -68,11 +68,10 @@ Each is shown as its own chip; a person can hold several.
 | Certified Tree Worker / Climber Specialist | `Tree Worker Climber` | |
 | Certified Tree Worker / Aerial Lift Specialist | `Tree Worker Aerial Lift` | |
 | Board Certified Master Arborist | `BCMA` | Top-tier; gets a gold badge variant |
-| Tree Risk Assessment Qualification | `TRAQ` | A *qualification*, not a certification. Shown as a chip but **does not by itself** grant Verified |
+| Tree Risk Assessment Qualification | `TRAQ` | A *qualification*, not a certification, but **does** grant Verified on its own: ISA requires Certified Arborist status or equivalent education/experience to earn it. Renews on a 5-year cycle. |
 
-> Open question: should TRAQ alone grant Verified? Current design says no,
-> since TRAQ requires being a Certified Arborist or equivalent in most cases
-> anyway.
+Any one current credential from this table earns Verified and the Arborist
+Root Flare.
 
 ---
 
@@ -225,7 +224,7 @@ Follow, Like, Message, Report — standard
 ```
 
 "Verified" is derived, never stored: true while the user has at least one
-Credential with status `verified` or `expiring` whose type is not `traq`.
+Credential with status `verified` or `expiring` (any type, including `traq`).
 Displayed Root Flare = Master Arborist if verified with BCMA, else Arborist if
 verified, else `User.role`.
 
@@ -260,7 +259,7 @@ Reply permission on a question post (`ask | tree_id | risk`):
 
 ## 8. Open questions
 
-1. Does TRAQ alone grant Verified? (Current answer: no.)
+1. ~~Does TRAQ alone grant Verified?~~ **Decided:** yes.
 2. Recognize non-ISA credentials (e.g. state licenses, UK Arboricultural
    Association, TCIA CTSP) as secondary chips without the Verified badge?
 3. ~~Should homeowners be able to join?~~ **Decided:** yes — they can ask,

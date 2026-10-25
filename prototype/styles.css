@@ -117,7 +117,6 @@ h2 { font-size: 17px; margin: 0 0 8px; }
   background: var(--green-soft); color: var(--green); font-weight: 600;
 }
 .chip.gold { background: var(--gold-soft); color: var(--gold); }
-.chip.plain { background: var(--bg); color: var(--muted); font-weight: 500; }
 
 /* Composer */
 textarea, input[type=text], select {

@@ -8,8 +8,7 @@ const CREDENTIALS = {
   tw_climber: { label: "Tree Worker Climber" },
   tw_aerial: { label: "Tree Worker Aerial Lift" },
   bcma: { label: "BCMA", gold: true },
-  // TRAQ is a qualification, not a certification: shown, but doesn't verify.
-  traq: { label: "TRAQ", grantsVerified: false },
+  traq: { label: "TRAQ" },
 };
 
 const POST_TYPES = {
@@ -132,7 +131,7 @@ function activeCreds(user) {
 }
 
 function isVerified(user) {
-  return activeCreds(user).some((c) => CREDENTIALS[c.type].grantsVerified !== false);
+  return activeCreds(user).length > 0;
 }
 
 function isBCMA(user) {
@@ -164,8 +163,7 @@ function chips(user) {
   if (!cs.length) return "";
   return `<div class="chips">${cs.map((c) => {
     const def = CREDENTIALS[c.type];
-    const cls = def.gold ? "gold" : def.grantsVerified === false ? "plain" : "";
-    return `<span class="chip ${cls}">${esc(def.label)}</span>`;
+    return `<span class="chip ${def.gold ? "gold" : ""}">${esc(def.label)}</span>`;
   }).join("")}</div>`;
 }
 
@@ -351,16 +349,14 @@ function viewVerify() {
         <h2>Which credentials do you hold?</h2>
         ${Object.entries(CREDENTIALS).map(([k, def]) => `
           <label class="check"><input type="checkbox" data-cred="${k}" ${d.creds.includes(k) ? "checked" : ""}>
-            <span>${esc(def.label)}${def.grantsVerified === false ? ` <span class="muted small">— shown on your profile, but doesn't verify on its own</span>` : ""}</span>
+            <span>${esc(def.label)}</span>
           </label>`).join("")}
         <label>Photo of your ISA card (optional)</label>
         <p class="hint">Speeds up manual review. Stored encrypted, deleted 30 days after a decision. (Not collected in this prototype.)</p>
         <div class="row">
           <button class="btn secondary" id="v-back">Back</button>
-          <button class="btn" id="v-next2" ${d.creds.some((c) => CREDENTIALS[c].grantsVerified !== false) ? "" : "disabled"}>Next</button>
+          <button class="btn" id="v-next2" ${d.creds.length ? "" : "disabled"}>Next</button>
         </div>
-        ${d.creds.length && !d.creds.some((c) => CREDENTIALS[c].grantsVerified !== false)
-          ? `<p class="error">Pick at least one ISA certification (TRAQ alone doesn't qualify).</p>` : ""}
       </div>`;
   }
 
